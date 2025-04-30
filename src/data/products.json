@@ -1,0 +1,68 @@
+[
+    {
+      "id": "001",
+      "title": "Pantalon Zara",
+      "description": "Pantalon de cuero con bolsillos.",
+      "code": "PC001",
+      "price": 500,
+      "status": true,
+      "stock": 10,
+      "category": "pantalones",
+      "thumbnails": ""
+    },
+    {
+      "id": "002",
+      "title": "blusa",
+      "description": "Blusa de seda, lisa.",
+      "code": "BS002",
+      "price": 400,
+      "status": true,
+      "stock": 20,
+      "category": "blusas",
+      "thumbnails": ""
+    },
+    {
+      "id": "003",
+      "title": "Pantalon Adidas",
+      "description": "Pantalon negro con cierre.",
+      "code": "PC002",
+      "price": 500,
+      "status": true,
+      "stock": 21,
+      "category": "pantalones",
+      "thumbnails": ""
+    },
+    {
+      "id": "004",
+      "title": "camisa Blu",
+      "description": "Camisa de seda, estampa animal print.",
+      "code": "BS003",
+      "price": 300,
+      "status": true,
+      "stock": 30,
+      "category": "blusas",
+      "thumbnails": ""
+    },
+    {
+      "id": "005",
+      "title": "Pantalon Duc",
+      "description": "Pantalon de lanilla.",
+      "code": "PC003",
+      "price": 510,
+      "status": true,
+      "stock": 15,
+      "category": "pantalones",
+      "thumbnails": ""
+    },
+    {
+      "id": "006",
+      "title": "blusa Perla",
+      "description": "Blusa de lino, de marruecos.",
+      "code": "BS004",
+      "price": 200,
+      "status": true,
+      "stock": 10,
+      "category": "blusas",
+      "thumbnails": ""
+    }
+  ]

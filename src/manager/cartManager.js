@@ -1,49 +1,61 @@
 import fs from "fs";
 
 class CartManager{
-    constructor(){
-        this.path = './src/carts.json';
-}
+    constructor(pathFile) {
+        this.pathFile = pathFile;
+    }
 
-generateNewId = (carts) => {
-    if(carts.length > 0){
-        return carts[carts.length - 1].id + 1;
-    }else{
-        return 1;
+
+    addCart = async() => {
+        try{
+            const fileData = await fs.promises.readFile(this.pathFile, 'utf-8');
+            const carts = JSON.parse(fileData);
+
+            const newId = carts.length > 0 ? carts[carts.length -1].id + 1 : 1;
+
+            const newCart ={
+                id: newId,
+                products: []
+            };
+            carts.push(newCart);
+            await fs.promises.writeFile(this.pathFile, JSON.stringify(carts, null, 2), 'utf-8' );
+            return carts;
+        } catch (error) {
+            throw n
+        }
+    }
+
+    getCartById = async(idCart) => {
+        try{
+            const fileData = await fs.promises.readFile(this.pathFile, 'utf-8');
+            const carts = JSON.parse(fileData);
+
+            const cart = carts.find(cart => cart.id === parseInt(idCart));
+            
+            if (!cart) throw new Error (`Carrito con id: ${idCart} no encontrado`);
+
+            return cart.products;
+        } catch (error) {
+            throw new Error(`Error al obtener el carrito: ${error.message}`);
+        }
+    }
+
+    addProductInCartById = async(idCart, product) => {
+        try{
+            const fileData= await fs.promises.readFile(this.pathFile, 'utf-8');
+            const carts = JSON.parse(fileData);
+
+            const cart = carts.find(cart => cart.id === parseInd(idCart));
+                if(!cart) throw new Error(`Carrito con id: ${idCart} no encontrado`);
+                
+                cart.products.push(product);
+                await fs.promises.writeFile(this.pathFile, JSON.stringify(carts, null, 2))
+
+                return cart;
+        } catch (error){
+                throw new Error(`Error al añadir productos al carrito: ${error.message}`);
+        }
     }
 }
-
-addCart = async() => {
-    const cartsJson = await fs.promises.readFile(this.path, 'utf-8');
-    const carts = JSON.parse(cartsJson);
-    const id = this.generateNewId(carts);
-    carts.push({ id , products: [] });
-
-    await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2), 'utf-8' );
-    return { carts, message: "Nuevo carrito creado"};
-}
-
-getProductsInCartById = async(cid) => {
-    const cartsJson = await fs.promises.readFile(this.path, 'utf-8');
-    const carts = JSON.parse(cartsJson);
-    const cart = carts.find((cartData)=> cartData.id == cid );
-    return cart.products;
-}
-
-addProductInCart = async(cid, pid, quantity) => {
-    const cartsJson = await fs.promises.readFile(this.path, 'utf-8');
-    const carts = JSON.parse(cartsJson);
-    carts.forEach(cart => {
-        if(cart.id == cid){
-        
-        cart.products.push({ id : pid , quantity });
-    }
-});
-
-    await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2), 'utf-8');
-
-    return carts;
-    }
-};
 
 export default CartManager;
